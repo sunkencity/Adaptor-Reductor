@@ -2,10 +2,12 @@
 Trimming dna adaptors & playing with multicore.
 
 $ lein deps # load deps
-
 $ lein repl # launch an interactive REPL session
-
 $ lein test # run tests (which we will write soon :)
-
 $ lein jar # package up the whole project as a .jar file
 
+
+----
+
+(load "adaptor-reductor")
+(ns adaptor-reductor)

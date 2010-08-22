@@ -1,4 +1,4 @@
-(ns adaptor-reductor.core)
+(ns adaptor-reductor)
 
 (use 'clojure.contrib.str-utils)
 
@@ -30,4 +30,5 @@
 
 (defn parse-adapter-parallel
   [] (pmap with-parsed-data (raw-data)))
+
 
