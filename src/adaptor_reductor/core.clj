@@ -4,7 +4,7 @@
 
 (defn raw-data
   "Loads a file and returns a nested sequence"
-  [] (partition 4 (re-split #"\n" (slurp "trimtest.fastq"))))
+  [] (partition 4 (re-split #"\n" (slurp "datadir/trimtest.fastq"))))
 
 (defn sequence-without-adapter
   "removes adapter from a sequence"
