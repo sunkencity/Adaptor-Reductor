@@ -1,15 +1,11 @@
-# adaptor-reductor
 
-FIXME: write description
+Trimming dna adaptors & playing with multicore.
 
-## Usage
+$ lein deps # load deps
 
-FIXME: write
+$ lein repl # launch an interactive REPL session
 
-## Installation
+$ lein test # run tests (which we will write soon :)
 
-FIXME: write
+$ lein jar # package up the whole project as a .jar file
 
-## License
-
-FIXME: write
