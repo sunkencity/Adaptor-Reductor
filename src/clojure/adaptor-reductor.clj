@@ -4,31 +4,37 @@
 
 (defn raw-data
   "Loads a file and returns a nested sequence"
-  [] (partition 4 (re-split #"\n" (slurp "datadir/trimtest.fastq"))))
+  [file-path] (partition 4 (re-split #"\n" (slurp file-path))))
 
 (defn sequence-without-adapter
-  "removes adapter from a sequence"
-  [s] (map last
-       (drop-while #(apply = %)
-                   (mapcat #(list [%1 %2]) "CTGTAGGCACCATCAATCGTATGCCGTCTTCTGCTTG" s))))
+	[sequence adapter min-length current-pos]
+	(loop [s sequence
+			   a adapter
+			   pos current-pos]
+			(if (= (first s) (first a))
+				(recur (rest s) (rest a) (+ 1 current-pos))
+		    (if (>= 5 current-pos)
+			    s
+			  sequence))))
 
 (defn remove-adapter-dna
-  "removes adapter from dna if adapter matches at least 6 letters"
-  [s]
-  (let [s-removed (sequence-without-adapter s)]
-    (if (> 5 (- (.length s) (.length s-removed)))
-      s-removed 
-			s)))
-
+	[sequence]
+	(str (sequence-without-adapter sequence "CTGTAGGCACCATCAATCGTATGCCGTCTTCTGCTTG" 6 0)))
+	
 (defn with-parsed-data
   "Appends parsed data to each item"
   [data]
   (list data (remove-adapter-dna (second data))))
 
 (defn parse-adapter
-  [] (map with-parsed-data (raw-data)))
+  [file-path] (map with-parsed-data (raw-data file-path)))
 
 (defn parse-adapter-parallel
-  [] (pmap with-parsed-data (raw-data)))
+  [file-path] (pmap with-parsed-data (raw-data file-path)))
 
-
+(defn main-
+	"datadir/trimtest.fastq"
+	[file parallel]
+	(if (= parallel "p")
+	  (parse-adapter file)
+	  (parse-adapter-parallel file)))
