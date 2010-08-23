@@ -2,5 +2,5 @@
   (:use [adaptor-reductor.core] :reload-all)
   (:use [clojure.test]))
 
-(deftest replace-me ;; FIXME: write
-  (is false))
+(deftest sequence-without-adapter-test
+  (is (= (sequence-without-adapter "FOOBAR" "FOOFAR" 3) "BAR")))

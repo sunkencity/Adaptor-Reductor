@@ -1,4 +1,4 @@
-(ns adaptor-reductor)
+(ns adaptor-reductor.core)
 
 (use 'clojure.contrib.str-utils)
 
@@ -6,16 +6,21 @@
   "Loads a file and returns a nested sequence"
   [file-path] (partition 4 (re-split #"\n" (slurp file-path))))
 
+(defn list-to-str
+	[i] (reduce #(.concat %1 (.toString %2)) "" i))
+	
 (defn sequence-without-adapter
-	[sequence adapter min-length current-pos]
-	(loop [s sequence
-			   a adapter
-			   pos current-pos]
-			(if (= (first s) (first a))
-				(recur (rest s) (rest a) (+ 1 current-pos))
-		    (if (>= 5 current-pos)
-			    s
-			  sequence))))
+	[sequence adapter min-length]
+	(list-to-str 
+		(loop [s sequence
+			     a adapter
+			     match-size 0]
+			     (if (= (first s) (first a))
+				      (recur (rest s) (rest a) (+ 1 match-size))
+		          (if (>= min-length match-size)
+			          s
+			          sequence)))))
+
 
 (defn remove-adapter-dna
 	[sequence]
