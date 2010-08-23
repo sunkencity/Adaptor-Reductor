@@ -1,4 +1,4 @@
-(ns adaptor-reductor.core)
+(ns adaptor-reductor.core (:gen-class))
 
 (use 'clojure.contrib.str-utils)
 
@@ -34,12 +34,10 @@
 (defn parse-adapter-parallel
   [file-path] (pmap with-parsed-data (raw-data file-path)))
 
-(defn -main [& args]
-	  (println "Hello world!"))
-	
-(defn main-
+(defn -main
 	"usage: datadir/trimtest.fastq -p"
 	[file parallel]
-	(if (= parallel "-p")
-	  (parse-adapter file)
-	  (parse-adapter-parallel file)))
+	(apply println 
+		(if (= parallel "-p")
+	  	(parse-adapter file)
+	  	(parse-adapter-parallel file))))
