@@ -39,5 +39,5 @@
 	[file parallel]
 	(apply println 
 		(if (= parallel "-p")
-	  	(parse-adapter file)
-	  	(parse-adapter-parallel file))))
+	  	(parse-adapter-parallel file)
+	  	(parse-adapter-parallel))))
