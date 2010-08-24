@@ -36,8 +36,9 @@
 
 (defn -main
 	"usage: datadir/trimtest.fastq -p"
-	[file parallel]
-	(apply println 
+	([file] (-main file false))
+	([file parallel]
+	(apply println
 		(if (= parallel "-p")
 	  	(parse-adapter-parallel file)
-	  	(parse-adapter-parallel))))
+	  	(parse-adapter file )))))
