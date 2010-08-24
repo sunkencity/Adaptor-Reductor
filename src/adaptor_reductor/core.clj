@@ -26,9 +26,9 @@
 (defn with-parsed-data
   "Appends parsed data to each item"
   [data]
-  (cons
-   (remove-adapter-dna (second data))
-   data))
+  (conj
+   data
+   (remove-adapter-dna (second data))))
 
 (defn parse-adapter
   [file-path]
