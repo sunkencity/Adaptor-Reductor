@@ -41,7 +41,8 @@
 (defn print-items
   [coll]
   (doseq [x coll]
-    (doseq [line x] (println line))))
+    (doseq [line x] (println line))
+    (println "---")))
 
 (defn -main
   "usage: datadir/trimtest.fastq -p"
