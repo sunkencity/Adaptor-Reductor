@@ -1,4 +1,7 @@
 
+TODO: skriva discarded refs till egen fil eller error out
+
+
 Trimming dna adaptors & playing with multicore.
 
 $ lein deps # load deps
