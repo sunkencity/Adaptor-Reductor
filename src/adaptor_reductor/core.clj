@@ -14,7 +14,7 @@
            match-size 0]
            (if (= (first s) (first a))
               (recur (rest s) (rest a) (+ 1 match-size))
-              (if (>= min-length match-size)
+              (if (>= match-size min-length)
                 s
                 sequence)))))
 
