@@ -4,7 +4,7 @@
 
 (defn raw-data
   "Loads a file and returns a nested sequence"
-  [file-path] (partition 4 (re-split #"\n" (slurp file-path))))
+  [file-path] (partition 4  (line-seq (java.io.BufferedReader. (java.io.FileReader. file-path)))))
 
 (defn sequence-without-adapter
   [sequence adapter min-length]
